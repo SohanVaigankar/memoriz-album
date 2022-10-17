@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import useFirestore from "../hooks/useFirestore";
 import { motion } from "framer-motion";
 
-const ImageGrid = ({ setClickedImage }) => {
+// context
+import { ModalContext } from "../Context/Contexts/ModalContext";
+import { OPEN_IMAGE_MODAL } from "../Context/action.types";
+
+const ImageGrid = () => {
+  // context
+  const { dispatch } = useContext(ModalContext);
+
   // getting docs from useFirestore()
   const { docs } = useFirestore("images");
   console.log(docs);
@@ -14,7 +21,12 @@ const ImageGrid = ({ setClickedImage }) => {
           <motion.div
             className="img-wrap"
             key={doc.id}
-            onClick={() => setClickedImage(doc.url)}
+            onClick={() => {
+              dispatch({
+                type: OPEN_IMAGE_MODAL,
+                payload: { isEnabled: true, imageDetails: { url: doc.url } },
+              });
+            }}
             whileHover={{ opacity: 1 }}
             layout
           >
