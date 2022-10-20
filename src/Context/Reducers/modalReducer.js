@@ -6,10 +6,10 @@ export const modalReducer = (state, action) => {
       return {
         ...state,
         isEnabled: true,
-        imageDetails: action.payload.imageDetails,
+        modalImageDetails: action.payload.modalImageDetails,
       };
     case CLOSE_IMAGE_MODAL:
-      return { ...state, isEnabled: false, imageDetails: {} };
+      return { ...state, isEnabled: false, modalImageDetails: {} };
     default:
       return { ...state };
   }

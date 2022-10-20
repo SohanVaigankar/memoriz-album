@@ -7,14 +7,14 @@ import { CLOSE_IMAGE_MODAL } from "../Context/action.types";
 
 const ImageModal = () => {
   // context
-  const { imageDetails, dispatch } = useContext(ModalContext);
+  const { modalImageDetails, dispatch } = useContext(ModalContext);
 
   // fn to handle clicks on backdrop
   const handleBackdropClick = (e) => {
     if (e.target.classList.contains("backdrop")) {
       dispatch({
         type: CLOSE_IMAGE_MODAL,
-        payload: { isEnabled: false, imageDetails: {} },
+        payload: { isEnabled: false, modalImageDetails: {} },
       });
     }
   };
@@ -27,7 +27,7 @@ const ImageModal = () => {
       animate={{ opacity: 1 }}
     >
       <motion.img
-        src={imageDetails.url}
+        src={modalImageDetails.url}
         alt={`modal window for pic`}
         initial={{ y: "100vh" }}
         animate={{ y: "0vh" }}

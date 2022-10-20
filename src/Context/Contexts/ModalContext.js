@@ -14,10 +14,10 @@ export const ModalContextProvider = ({ children }) => {
   //  for selected/clicked image
   const [modalState, dispatch] = useReducer(modalReducer, initialState);
 
-  const { isEnabled, imageDetails } = modalState;
+  const { isEnabled, modalImageDetails } = modalState;
 
   return (
-    <ModalContext.Provider value={{ isEnabled, imageDetails, dispatch }}>
+    <ModalContext.Provider value={{ isEnabled, modalImageDetails, dispatch }}>
       {children}
       {isEnabled && <ImageModal />}
     </ModalContext.Provider>

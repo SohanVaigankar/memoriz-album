@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ProgressBar from "./ProgressBar";
 
+// context
+import { ImageContext } from "../Context/Contexts/ImageContext";
+import { UPLOAD_IMAGE } from "../Context/action.types";
+
 const ImageUploadForm = () => {
-  // state to store the selected file
-  const [file, setFile] = useState(null);
+  // context
+  const { file, dispatch } = useContext(ImageContext);
 
   //   state to store error messages
   const [error, setError] = useState(null);
@@ -18,10 +22,10 @@ const ImageUploadForm = () => {
     // getting selected files
     let selectedFile = e.target.files[0];
     if (selectedFile && allowedFileTypes.includes(selectedFile.type)) {
-      setFile(selectedFile);
+      dispatch({ type: UPLOAD_IMAGE, payload: { file: selectedFile } });
       setError("");
     } else {
-      setFile(null);
+      dispatch({ type: UPLOAD_IMAGE, payload: {} });
       setError("only png/jpg/jpeg images are supported.");
     }
   };
@@ -40,7 +44,7 @@ const ImageUploadForm = () => {
       <div className="output">
         {error && <div className="error">{error}</div>}
         {file && <div>{file.name}</div>}
-        {file && <ProgressBar file={file} setFile={setFile} />}
+        {file && <ProgressBar />}
       </div>
     </form>
   );

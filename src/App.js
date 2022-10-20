@@ -7,16 +7,18 @@ import ImageGrid from "./Components/ImageGrid";
 
 // context
 import { ModalContextProvider } from "./Context/Contexts/ModalContext";
+import { ImageContextProvider } from "./Context/Contexts/ImageContext";
 
 const App = () => {
-
   return (
     <div className="App">
-      <Nav />
-      <ImageUploadForm />
-      <ModalContextProvider>
-        <ImageGrid/>
-      </ModalContextProvider>
+      <ImageContextProvider>
+        <Nav />
+        <ImageUploadForm />
+        <ModalContextProvider>
+          <ImageGrid />
+        </ModalContextProvider>
+      </ImageContextProvider>
     </div>
   );
 };

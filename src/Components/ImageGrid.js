@@ -12,7 +12,6 @@ const ImageGrid = () => {
 
   // getting docs from useFirestore()
   const { docs } = useFirestore("images");
-  console.log(docs);
 
   return (
     <div className="img-grid">
@@ -24,7 +23,7 @@ const ImageGrid = () => {
             onClick={() => {
               dispatch({
                 type: OPEN_IMAGE_MODAL,
-                payload: { isEnabled: true, imageDetails: { url: doc.url } },
+                payload: { isEnabled: true, modalImageDetails: { url: doc.url } },
               });
             }}
             whileHover={{ opacity: 1 }}
