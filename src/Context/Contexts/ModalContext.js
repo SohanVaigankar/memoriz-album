@@ -8,16 +8,13 @@ import ImageModal from "../../Components/ImageModal";
 
 export const ModalContext = createContext();
 
-const initialState = {
-  payload: { isEnabled: false, imageDetails: {} },
-};
+const initialState = { isEnabled: false, imageDetails: {} };
 
 export const ModalContextProvider = ({ children }) => {
   //  for selected/clicked image
-  const [ isEnabled, imageDetails, dispatch ] = useReducer(
-    modalReducer,
-    initialState
-  );
+  const [modalState, dispatch] = useReducer(modalReducer, initialState);
+
+  const { isEnabled, imageDetails } = modalState;
 
   return (
     <ModalContext.Provider value={{ isEnabled, imageDetails, dispatch }}>

@@ -14,3 +14,6 @@ export const modalReducer = (state, action) => {
       return { ...state };
   }
 };
+
+
+
